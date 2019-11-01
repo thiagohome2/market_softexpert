@@ -68,10 +68,12 @@ class salesController extends Controller
       require(ROOT . 'Models/Sales.php');
       require(ROOT . 'Models/Sale_items.php');
 
-      $sele = new Sales();
       $sele_itens = new SaleItems();
       $sele_itens->deleteAllSele($id);
+
+      $sele = new Sales();
       $sele->delete($id);
+      
       header("Location: " . WEBROOT . "sales/index");
   }
 }

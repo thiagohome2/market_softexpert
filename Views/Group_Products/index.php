@@ -17,7 +17,7 @@
             echo "<td>" . $group['id'] . "</td>";
             echo "<td>" . $group['description'] . "</td>";
             echo "<td>" . $group['tax'] . " %</td>";
-            echo "<td class='text-center'><a class='btn btn-info btn-xs' href='/market_softexpert/group_products/edit/" . $group["id"] . "' ><span class='glyphicon glyphicon-edit'></span> Editar</a> <a href='/market_softexpert/tasks/delete/" . $group["id"] . "' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
+            echo "<td class='text-center'><a class='btn btn-info btn-xs' href='/market_softexpert/group_products/edit/" . $group["id"] . "' ><span class='glyphicon glyphicon-edit'></span> Editar</a> <a href='/market_softexpert/group_products/delete/" . $group["id"] . "' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-remove'></span> Excluir</a></td>";
             echo "</tr>";
         }
         ?>

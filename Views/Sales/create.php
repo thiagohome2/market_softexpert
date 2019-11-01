@@ -29,7 +29,7 @@
             <h3 id="placar_itens"><strong>Itens: </strong>0</h3>
         </div>
         <div class="col-md-4">
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Finalizar Venda</a></p>
+        <p><a class="btn btn-primary btn-lg" href="/market_softexpert/" role="button">Finalizar Venda</a></p>
         </div>
     </div>    
     <ul class="list-group" id="list_items_sale"></ul>

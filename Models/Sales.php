@@ -30,7 +30,7 @@ class Sales extends Model
 
     public function showAllSeles($filter)
     {
-        $sql = "SELECT * FROM sales";
+        $sql = "SELECT * FROM sales ORDER BY id ASC";
         $req = Database::getBdd()->prepare($sql);
         $req->execute();
         return $req->fetchAll();

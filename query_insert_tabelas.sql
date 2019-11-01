@@ -38,7 +38,7 @@ CREATE TABLE sale_items(
 	price_unit real,
     total	real,
 	tax real,
-	tax_toal_item real,
+	tax_total_item real,
     created_at   timestamp with time zone,
     updated_at   timestamp with time zone,
 	FOREIGN KEY (sale_id) REFERENCES sales

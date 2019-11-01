@@ -47,6 +47,10 @@ var Seles = (function() {
         price
       );
     });
+    $(document).on('click', '.excluir-item-sale', function() {
+      var id_item_sale = $(this).data('iditemsale');
+      exclui_item_venda(id_item_sale);
+    });
   }
 
   function adicionar_item_venda(
@@ -86,6 +90,23 @@ var Seles = (function() {
       }
     });
   }
+
+  function exclui_item_venda(id) {
+    var dados = {
+      id: id
+    };
+    $.ajax({
+      type: 'POST',
+      url: '/market_softexpert/sale_items/delete/',
+      data: dados,
+      dataType: 'json',
+      success: function(data) {
+        console.log('Excluiu certinho!');
+        atualizar_tela(data);
+      }
+    });
+  }
+
   function atualizar_tela(obj) {
     var dados = {
       ok: obj,
@@ -263,17 +284,19 @@ var Seles = (function() {
           o.product_id +
           '-' +
           o.description.toUpperCase() +
-          '<br /> ' +
+          ' <button type="button" class="close excluir-item-sale" data-iditemsale="' +
+          o.id +
+          '" aria-label="Excluir"><span aria-hidden="true">&times;</span></button> <br /> <table class="table-condensed" width="100%"><tr><td>' +
           o.qtd_unids +
           ' ' +
           o.unid.toUpperCase() +
-          '   x   R$' +
+          ' </td><td align="center">x</td><td>R$' +
           o.total.toString().replace('.', ',') +
-          '     T ' +
+          ' </td><td align="right">T ' +
           o.tax +
-          '% =         <strong>R$' +
+          '% </td><td align="right"> = </td><td align="right"><strong>R$' +
           total_item.toString().replace('.', ',') +
-          '</strong>'
+          '</strong></td></tr></table>'
       }).appendTo($ul);
     });
 
