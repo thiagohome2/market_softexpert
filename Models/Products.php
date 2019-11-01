@@ -31,7 +31,8 @@ class Products extends Model
 
         if($filter != "" )
         {
-            $sql_filter = "WHERE a.description LIKE " . $filter. "%";
+            //$sql_filter = "WHERE a.description LIKE '%" . $filter. "%' OR a.id IN ('".$filter."')";
+            $sql_filter = "WHERE  a.id IN ('".$filter."')";
         }
 
         $sql = "SELECT 

@@ -21,18 +21,26 @@ class salesController extends Controller
 
   function create()
   {
-    if(isset($_POST["client"]))
-    {
-      require(ROOT . 'Models/Sales.php');
+
+    require(ROOT . 'Models/Sales.php');
       
-      $product = new sales();
-  
-      if ($product->create($_POST["client"]))
-      {
-          header("Location: " . WEBROOT . "sales/index");
-      }
-    }    
+    $sale = new sales();
+      
+    $d['sale'] = $sale->create("Não Informado");
+    
+    $this->set($d);
     $this->render("create");
+  }
+
+  function ajax_edit_view_create()
+  {
+      require(ROOT . 'Models/Sales.php');
+
+      $sele = new Sales();
+      
+      $return = $sele->edit($_POST["id"], $_POST["client"], $_POST["total"], $_POST["tax_total"], $_POST["qtd_items"]);
+      
+      return $return;
   }
 
   function edit($id)
@@ -41,7 +49,7 @@ class salesController extends Controller
 
       $sele = new Sales();
       
-      $d['sele'] = $sele->showSale($id);
+      $d['sale'] = $sele->showSale($id);
 
       if (isset($_POST["client"]) || isset($_POST["total"]) || $_POST["tax_total"] ||  isset($_POST["qtd_itens"]))
       {
@@ -58,16 +66,13 @@ class salesController extends Controller
   function delete($id)
   {
       require(ROOT . 'Models/Sales.php');
-      require(ROOT . 'Models/Sales_items.php');
+      require(ROOT . 'Models/Sale_items.php');
 
       $sele = new Sales();
-      $sele_itens = new Sales_items();
-      if ($sele->delete($id))
-      {
-        if($sele_itens->deleteAllSele($id)){
-          header("Location: " . WEBROOT . "sales/index");
-        }
-      }
+      $sele_itens = new SaleItems();
+      $sele_itens->deleteAllSele($id);
+      $sele->delete($id);
+      header("Location: " . WEBROOT . "sales/index");
   }
 }
 ?>

@@ -1,17 +1,23 @@
 <?php
 class Sales extends Model
 {
-    public function create($client)
-    {
+    public function create(){
+
         $sql = "INSERT INTO sales (client, created_at, updated_at) VALUES ( :client, :created_at, :updated_at)";
         
         $req = Database::getBdd()->prepare($sql);
         
-        return $req->execute([
-            'client' => $client,
+        $req->execute([
+            'client' => " - ",
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
+        
+        $sql2 = "SELECT id FROM sales ORDER BY id DESC LIMIT 1";
+        $req2 = Database::getBdd()->prepare($sql2);
+        $req2->execute();
+
+        return $req2->fetch();
     }
 
     public function showSale($id)
@@ -30,10 +36,10 @@ class Sales extends Model
         return $req->fetchAll();
     }
 
-    public function edit($id, $client, $total, $tax_total, $qtd_itens)
+    public function edit($id, $client, $total, $tax_total, $qtd_items)
     {
-        $sql = "UPDATE sales SET  client = :client, total = :total, tax_total = :tax_total, qtd_itens = :qtd_itens, updated_at = :updated_at WHERE id = :id";
-
+        $sql = "UPDATE sales SET  client = :client, total = :total, tax_total = :tax_total, qtd_items = :qtd_items, updated_at = :updated_at WHERE id = :id";
+        
         $req = Database::getBdd()->prepare($sql);
 
         return $req->execute([
@@ -41,9 +47,8 @@ class Sales extends Model
             'client' => $client,
             'total' => $total,
             'tax_total' => $tax_total,
-            'qtd_itens' => $qtd_itens,
+            'qtd_items' => $qtd_items,
             'updated_at' => date('Y-m-d H:i:s')
-
         ]);
     }
 

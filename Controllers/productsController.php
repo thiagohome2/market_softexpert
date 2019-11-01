@@ -81,5 +81,23 @@ class productsController extends Controller
             header("Location: " . WEBROOT . "products/index");
         }
     }
+
+    function ajaxgetproducts()
+    {
+        require(ROOT . 'Models/Products.php');
+
+        if (isset($_POST["filter"]))
+        {
+            $filter = $_POST["filter"];
+        }else{
+            $filter = "";
+        }    
+
+        $products = new Products();
+
+        $d = $products->showAllProducts($filter);
+        //print_r($d);
+        echo json_encode($d);
+    }
 }
 ?>

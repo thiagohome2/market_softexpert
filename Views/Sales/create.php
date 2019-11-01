@@ -1,43 +1,38 @@
-<h1>Nova Venda</h1>
-
+<h1>Nova Venda: Nº <?php echo $sale['id'] ;?></h1>
+<?php// print_r($sale);?>
 <div class="row">
   <div class="col-md-6">
-    <h2>Adicionar Itens</h2>
-        <form class="form-inline">
+  <h5>Dados da Venda</h5>
+    <form>
         <div class="form-group">
-            <input type="text" class="form-control" id="description_item_new_sale" placeholder="Código / Descrição">
-       
-            <input type="number" class="form-control" size="2"  id="qtd_item_new_sale" placeholder="Quantidade">
-
-         <input type="text" class="form-control" size="2" id="unid_item_new_sele" placeholder="Unid">
-         <a type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
-         </div>
-        </form>
-
+            <input type="text"  class="form-control" id="client-identification-new-sale" placeholder="Identificação do cliente ou venda">
+            <input type="hidden" id="cod_sale" value="<?php echo $sale['id'] ;?>" />
+            <input type="hidden" id="total_sale" value="0" />
+            <input type="hidden" id="tax_total_sale" value="0" />
+            <input type="hidden" id="qtd_items_sale" value="0" />
+        </div>
+  </form>
+  <h5>Adicionar Itens</h5>
+    <form>
+        <div class="form-group">
+            <input type="text"  class="form-control" id="description-item-new-sale" placeholder="Buscar item por código">
+        </div>
+    </form>
+    <br/>
+    <div id="lista-produto"></div>
   </div>
   <div class="col-md-6">
     <div class="row jumbotron">
         <div class="col-md-8">
-            <h3><strong>Total: </strong>R$5,00</h3>
-            <h3><strong>Total Impostos: </strong>R$5,00</h3>
-            <h3><strong>Itens: </strong>5</h3>
+            <h3 id="placar_total"><strong>Total: </strong>R$0,00</h3>
+            <h3 id="placar_impostos"><strong>Total Impostos: </strong>R$0,00</h3>
+            <h3 id="placar_itens"><strong>Itens: </strong>0</h3>
         </div>
         <div class="col-md-4">
         <p><a class="btn btn-primary btn-lg" href="#" role="button">Finalizar Venda</a></p>
         </div>
     </div>    
-    <table class="table table-striped custab">
-            <thead>
-            <tr>
-                <th>Código</th>
-                <th>Descricão</th>
-                <th>Valor</th>
-                <th>Quantidade</th>
-                <th>Impostos</th>
-                <th class="text-center">Ação</th>
-            </tr>
-            </thead>
-        
-        </table>
+    <ul class="list-group" id="list_items_sale"></ul>
+   
     </div>
 </div>

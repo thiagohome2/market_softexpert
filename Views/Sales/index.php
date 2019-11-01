@@ -2,7 +2,7 @@
 <div class="row col-md-12 centered">
     <table class="table table-striped custab">
         <thead>
-        <a href="/market_softexpert/sales/create/" class="btn btn-primary btn-xs pull-right"><b>+</b> Adicionar Venda</a>
+        <a href="/market_softexpert/sales/create/" class="btn btn-primary btn-lg pull-right">Adicionar Venda</a>
         <tr>
             <th>Código</th>
             <th>Cliente</th>
@@ -17,7 +17,7 @@
         {
             echo '<tr>';
             echo "<td>" . $sale['id'] . "</td>";
-            echo "<td>" . $sale['cliente'] . "</td>";
+            echo "<td>" . $sale['client'] . "</td>";
             echo "<td>" . $sale['total'] . "</td>";
             echo "<td>" . $sale['tax_total'] . "</td>";
             echo "<td>" . $sale['qtd_items'] . "</td>";
